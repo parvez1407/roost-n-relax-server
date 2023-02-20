@@ -41,6 +41,16 @@ async function run() {
       console.log(token)
       res.send({ result, token })
     })
+
+    // Get a single user by email
+    app.get('/user/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const user = await usersCollection.findOne(query);
+      console.log(user.role);
+      res.send(user);
+    })
+
     console.log('Database Connected...')
   } finally {
   }

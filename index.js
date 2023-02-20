@@ -51,6 +51,22 @@ async function run() {
       res.send(user);
     })
 
+    // Get all users
+    app.get('/users', async (req, res) => {
+      const users = await usersCollection.find().toArray();
+      console.log(users);
+      res.send(users);
+    })
+
+    // Save a bookings
+    app.post('/bookings', async (req, res) => {
+      const bookingData = req.body;
+      const result = await bookingsCollection.insertOne(bookingData);
+      console.log(result);
+      res.send(result);
+    })
+
+
     console.log('Database Connected...')
   } finally {
   }

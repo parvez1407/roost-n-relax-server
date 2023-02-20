@@ -13,7 +13,6 @@ app.use(express.json())
 
 // Database Connection
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ktnfrsc.mongodb.net/?retryWrites=true&w=majority`;
-console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
@@ -22,6 +21,7 @@ async function run() {
   try {
     const homesCollection = client.db('roostNRelax').collection('homes')
     const usersCollection = client.db('roostNRelax').collection('users')
+    const bookingsCollection = client.db('roostNRelax').collection("bookings")
 
     // save user email & generate JWT
     app.put('/user/:email', async (req, res) => {

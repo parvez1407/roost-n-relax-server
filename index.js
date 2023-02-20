@@ -81,6 +81,15 @@ async function run() {
       res.send(booking);
     })
 
+    // add a home
+    // save a booking
+    app.post('/homes', async (req, res) => {
+      const homes = req.body;
+      const result = await homesCollection.insertOne(homes);
+      console.log(result)
+      res.send(result);
+    })
+
 
     console.log('Database Connected...')
   } finally {
